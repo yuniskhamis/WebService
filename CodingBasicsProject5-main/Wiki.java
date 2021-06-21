@@ -1,3 +1,4 @@
+import org.json.*;
 public class Wiki extends ServiceCommunicator{
 
 
@@ -7,4 +8,7 @@ public class Wiki extends ServiceCommunicator{
     public static void main(String[] argv) {
         System.out.println(new Wiki("Allah").get());
     }
+
+
+
 }
