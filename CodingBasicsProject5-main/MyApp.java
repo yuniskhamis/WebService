@@ -129,8 +129,9 @@ public class MyApp {
             String timeStamp = search.getString("timestamp");
 
             System.out.println("Title : " + title);
-            System.out.println("Snippet: " + snippet);
+            System.out.println("Snippet: " + snippet.replaceAll("\\<.*?\\>", ""));
             System.out.println("Time Stamp: " + timeStamp);
+
         }
     }
 
