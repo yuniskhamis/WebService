@@ -14,6 +14,8 @@ public class MyApp {
                     case "tv" -> displayShowName();
                     case "music" -> displaySongName();
                     case "zipcode" -> displayZipcode();
+                    case "wiki" -> displayWikipediaTerm();
+
                     default -> System.out.println("Don't recognize input. Try a valid command. ");
                 }
                 menu();
@@ -45,6 +47,12 @@ public class MyApp {
         Scanner in = new Scanner(System.in);
         String cmd = in.next();
         System.out.println(new Music(cmd).get());
+    }
+    public static void displayWikipediaTerm() {
+        System.out.println("Enter a wikipedia term and use hyphens to represent spaces");
+        Scanner in = new Scanner(System.in);
+        String cmd = in.next();
+        System.out.println(new Wiki(cmd).get());
     }
 
     public static void menu() {
