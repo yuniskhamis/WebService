@@ -4,11 +4,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-
-import org.json.*;
-
-import static java.sql.DriverManager.println;
-
 /*
  Simplistic utility class to connect to a web server and retrieve data.
  Works for typical websites (but not very useful) and works for service calls that don't require authentication

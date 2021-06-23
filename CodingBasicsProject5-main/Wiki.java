@@ -1,4 +1,3 @@
-import org.json.*;
 public class Wiki extends ServiceCommunicator{
 
 

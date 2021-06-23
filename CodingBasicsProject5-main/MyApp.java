@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import org.json.*;
+
 
 public class MyApp {
     public static void main(String[] argv) {
@@ -17,6 +17,8 @@ public class MyApp {
                     case "music" -> displaySongName();
                     case "zipcode" -> displayZipcode();
                     case "wiki" -> displayWikipediaTerm();
+                    case "rw" -> RandomWiki.as();
+
 
                     default -> System.out.println("Don't recognize input. Try a valid command. ");
                 }
@@ -39,8 +41,8 @@ public class MyApp {
         System.out.println("Type: " + myResponse.getString("type"));
         System.out.println("Language: " + myResponse.getString("language"));
         System.out.println("Status: " + myResponse.getString("status"));
-        System.out.println("Runtime: " + myResponse.getInt("runtime"));
-        System.out.println("Average Runtime: " + myResponse.getInt("averageRuntime"));
+        System.out.println("Runtime: " + myResponse.getInt("runtime") + " minutes");
+        System.out.println("Average Runtime: " + myResponse.getInt("averageRuntime") + " minutes");
         System.out.println("Premiered: " + myResponse.getString("premiered"));
         JSONObject values = myResponse.getJSONObject("schedule");
         System.out.println("Time: " + values.getString("time"));
@@ -129,11 +131,13 @@ public class MyApp {
             String timeStamp = search.getString("timestamp");
 
             System.out.println("Title : " + title);
-            System.out.println("Snippet: " + snippet.replaceAll("\\<.*?\\>", ""));
+            System.out.println("Snippet: " + snippet.replaceAll("<.*?>", ""));
             System.out.println("Time Stamp: " + timeStamp);
 
         }
+
     }
+
 
     public static void menu() {
         System.out.println("\nMain Menu\n");
