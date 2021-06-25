@@ -7,10 +7,10 @@ import org.jsoup.select.Elements;
 public class RandomWiki {
 
     public static void main( String[] args ) {
-         as();
+         getRandomWikiInfo();
     }
 
-    public static void as(){
+    public static void getRandomWikiInfo(){
         Document doc = null;
         try {
             doc = Jsoup.connect("https://en.wikipedia.org/wiki/Special:Random").get();
@@ -27,7 +27,6 @@ public class RandomWiki {
 
         for (Element allParagraphs : paragraphs) {
             sb = new StringBuilder(String.valueOf(allParagraphs.text()));
-
             int j = 0;
             while ((j = sb.indexOf(" ", j + 100)) != -1) {
                 sb.replace(j, j + 1, "\n");

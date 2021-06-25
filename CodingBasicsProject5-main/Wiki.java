@@ -5,7 +5,7 @@ public class Wiki extends ServiceCommunicator{
         super("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + wikipediaTerm+ "&format=json");
     }
     public static void main(String[] argv) {
-        System.out.println(new Wiki("Allah").get());
+        System.out.println(new Wiki("json").get());
     }
 
 

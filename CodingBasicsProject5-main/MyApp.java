@@ -1,7 +1,8 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import org.json.*;
-
 
 public class MyApp {
     public static void main(String[] argv) {
@@ -17,9 +18,7 @@ public class MyApp {
                     case "music" -> displaySongName();
                     case "zipcode" -> displayZipcode();
                     case "wiki" -> displayWikipediaTerm();
-                    case "rw" -> RandomWiki.as();
-
-
+                    case "rw" -> RandomWiki.getRandomWikiInfo();
                     default -> System.out.println("Don't recognize input. Try a valid command. ");
                 }
                 menu();
@@ -59,7 +58,6 @@ public class MyApp {
         JSONObject b = myResponse.getJSONObject("network").getJSONObject("country");
         System.out.println("Country: " + b.getString("name"));
         System.out.println("Time Zone: " + b.getString("timezone"));
-
     }
 
     public static void displayZipcode() {
@@ -131,13 +129,25 @@ public class MyApp {
             String timeStamp = search.getString("timestamp");
 
             System.out.println("Title : " + title);
-            System.out.println("Snippet: " + snippet.replaceAll("<.*?>", ""));
-            System.out.println("Time Stamp: " + timeStamp);
+            StringBuilder sb = new StringBuilder(snippet.replaceAll("<.*?>", ""));
+            int j = 0;
+            while ((j = sb.indexOf(" ", j + 100)) != -1) {
+                sb.replace(j, j + 1, "\n");
+                System.out.println();
+            }
+            System.out.println("Snippet: " + sb);
+            System.out.println();
+            System.out.println("Time Stamp: " + fmtDateTime(timeStamp.substring(0,19)));
+            System.out.println();
 
         }
-
     }
-
+    public static String fmtDateTime(String datetime) {
+        datetime = datetime.replaceFirst("[+\\-]\\d\\d:\\d\\d$","");
+        LocalDateTime dt = LocalDateTime.parse(datetime);
+        DateTimeFormatter fmt =DateTimeFormatter.ofPattern("hh:mm a MM/dd/yyyy");
+        return dt.format(fmt);
+    }
 
     public static void menu() {
         System.out.println("\nMain Menu\n");
@@ -147,6 +157,7 @@ public class MyApp {
                 Retrieve Music info (“music”)
                 Retrieve Zipcode info (“zipcode”)
                 Retrieve Wiki info (“wiki”)
+                Retrieve Random wiki info (“rw”)
                                 
                 Enter "quit" or "stop" to exit the program\040
                 or continue running the program.""");
